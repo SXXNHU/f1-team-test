@@ -1,36 +1,142 @@
-# F1 Driver Match Quiz
+# F1 드라이버 매칭 퀴즈
 
-This project is a Streamlit-based F1 driver matching quiz.
-The app is implemented as a Python project with separated modules for authentication, data loading, quiz logic, and UI rendering.
+이 프로젝트는 **Streamlit 기반의 F1 드라이버 성향 매칭 퀴즈 웹앱**입니다.  
+사용자가 로그인한 뒤 객관식 질문에 답하면, 점수 계산을 통해 가장 잘 맞는 F1 드라이버 결과를 보여줍니다.
 
-## Run
+교수님께서는 아래 순서대로 실행하시면 됩니다.
+
+## 1. 실행 전 준비
+
+- 운영체제: Windows 기준으로 가장 쉽게 실행할 수 있습니다.
+- Python: **Python 3.10 이상**이 설치되어 있으면 됩니다.
+- 인터넷 연결 없이도 로컬 실행 가능합니다.
+
+Python이 설치되어 있지 않다면 먼저 설치해야 합니다.
+
+## 2. 프로젝트 폴더 열기
+
+터미널(PowerShell 또는 CMD)에서 프로젝트 폴더로 이동합니다.
+
+```bash
+cd C:\Users\USER\Desktop\f1-team-test
+```
+
+## 3. 필요한 패키지 설치
+
+아래 명령어를 실행합니다.
 
 ```bash
 pip install -r requirements.txt
+```
+
+설치되는 주요 패키지는 다음과 같습니다.
+
+- `streamlit==1.44.1`
+
+## 4. 프로그램 실행
+
+아래 명령어로 앱을 실행합니다.
+
+```bash
 streamlit run app.py
 ```
 
-`app.py` is the main execution file for grading.
+정상 실행되면 터미널에 로컬 주소가 출력됩니다.  
+보통 아래 주소로 접속하면 됩니다.
 
-## Assignment Notes
+```text
+http://localhost:8501
+```
 
-- First screen shows the student ID and name.
-- Login is required before solving the quiz.
-- Quiz JSON data is loaded with Streamlit caching via `@st.cache_data`.
-- The quiz is multiple-choice and produces a score-based personality match result.
+브라우저가 자동으로 열리지 않으면 위 주소를 직접 입력하면 됩니다.
 
-## Structure
+## 5. 로그인 정보
 
-- `app.py`: main Streamlit execution entrypoint
-- `src/config.py`: project constants and paths
-- `src/state.py`: session state initialization and reset
-- `src/data.py`: cached JSON loading and asset helpers
-- `src/logic.py`: score calculation and top-3 result logic
-- `src/ui.py`: login, quiz, and result screen rendering
-- `assets/`: image assets used by the app
-- `requirements.txt`: Python dependencies
+이 프로젝트는 로그인 후 퀴즈를 진행하도록 구현되어 있습니다.  
+현재 로그인 정보는 코드에 **하드코딩**되어 있으며, 아래 계정으로 바로 테스트할 수 있습니다.
 
-## Reproducibility
+- 아이디: `ahran`
+- 비밀번호: `1234`
 
-- The required package version is pinned in `requirements.txt`.
-- `.gitignore` excludes Python cache files, virtual environments, editor folders, and Streamlit secrets.
+하드코딩 위치:
+
+- `src/config.py`
+
+## 6. 사용 흐름
+
+앱 실행 후 진행 순서는 다음과 같습니다.
+
+1. 첫 화면에서 학번과 이름이 표시됩니다.
+2. 위 로그인 정보로 로그인합니다.
+3. 객관식 퀴즈에 응답합니다.
+4. 응답 결과에 따라 가장 잘 맞는 F1 드라이버 결과가 출력됩니다.
+
+## 7. 채점/확인 포인트
+
+이 프로젝트에서 확인하실 수 있는 구현 요소는 아래와 같습니다.
+
+- `app.py`를 기준으로 전체 앱이 실행됩니다.
+- 로그인 기능이 구현되어 있습니다.
+- 문제/드라이버 데이터는 JSON 파일에서 불러옵니다.
+- Streamlit의 `@st.cache_data`를 사용해 데이터 로딩을 캐싱합니다.
+- 퀴즈 응답 점수를 기반으로 성향 결과를 계산합니다.
+- 최종 결과 화면에서 매칭된 드라이버 정보를 확인할 수 있습니다.
+
+## 8. 프로젝트 구조
+
+- `app.py`: 메인 실행 파일
+- `src/config.py`: 상수, 경로, 로그인 정보 관리
+- `src/state.py`: 세션 상태 초기화 및 리셋
+- `src/data.py`: JSON 데이터 로딩, 에셋 처리
+- `src/logic.py`: 점수 계산 및 결과 산출
+- `src/ui.py`: 로그인 화면, 퀴즈 화면, 결과 화면 렌더링
+- `assets/`: 이미지 및 JSON 데이터 파일
+- `requirements.txt`: 의존성 목록
+
+## 9. 실행이 안 될 때
+
+### `pip` 명령이 안 되는 경우
+
+아래처럼 실행하면 되는 경우가 많습니다.
+
+```bash
+python -m pip install -r requirements.txt
+```
+
+### `streamlit` 명령이 안 되는 경우
+
+아래처럼 실행하면 됩니다.
+
+```bash
+python -m streamlit run app.py
+```
+
+### 포트 충돌이 나는 경우
+
+기본 포트 `8501`이 이미 사용 중이면 아래처럼 다른 포트로 실행할 수 있습니다.
+
+```bash
+python -m streamlit run app.py --server.port 8502
+```
+
+그 경우 접속 주소는 아래와 같습니다.
+
+```text
+http://localhost:8502
+```
+
+## 10. 제출 관점에서의 핵심
+
+교수님께서 가장 빠르게 확인하시려면 아래 3가지만 보시면 됩니다.
+
+1. `pip install -r requirements.txt`
+2. `streamlit run app.py`
+3. 로그인 정보 `ahran / 1234` 입력 후 퀴즈 진행
+
+## 11. 메인 실행 파일
+
+채점 및 실행 기준 메인 파일은 아래입니다.
+
+```text
+app.py
+```
