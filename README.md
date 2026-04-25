@@ -3,7 +3,7 @@
 이 프로젝트는 **Streamlit 기반의 F1 드라이버 성향 매칭 퀴즈 웹앱**입니다.  
 사용자가 로그인한 뒤 객관식 질문에 답하면, 점수 계산을 통해 가장 잘 맞는 F1 드라이버 결과를 보여줍니다.
 
-교수님께서는 아래 순서대로 실행하시면 됩니다.
+아래 순서대로 실행하시면 됩니다.
 
 ## 1. 실행 전 준비
 
@@ -52,15 +52,14 @@ http://localhost:8501
 
 ## 5. 로그인 정보
 
+<img width="1914" height="838" alt="image" src="https://github.com/user-attachments/assets/a33753ed-424c-4368-ae93-c75c45b82834" />
+
+
 이 프로젝트는 로그인 후 퀴즈를 진행하도록 구현되어 있습니다.  
-현재 로그인 정보는 코드에 **하드코딩**되어 있으며, 아래 계정으로 바로 테스트할 수 있습니다.
+아래 계정으로 바로 테스트할 수 있습니다.
 
 - 아이디: `ahran`
 - 비밀번호: `1234`
-
-하드코딩 위치:
-
-- `src/config.py`
 
 ## 6. 사용 흐름
 
@@ -70,6 +69,10 @@ http://localhost:8501
 2. 위 로그인 정보로 로그인합니다.
 3. 객관식 퀴즈에 응답합니다.
 4. 응답 결과에 따라 가장 잘 맞는 F1 드라이버 결과가 출력됩니다.
+
+<img width="1911" height="855" alt="image" src="https://github.com/user-attachments/assets/8005dcbe-585b-4573-81ee-f10e585768ac" />
+<img width="1914" height="869" alt="image" src="https://github.com/user-attachments/assets/58b8b89b-cf99-4935-a690-3b38c920a4d1" />
+
 
 ## 7. 채점/확인 포인트
 
@@ -123,20 +126,4 @@ python -m streamlit run app.py --server.port 8502
 
 ```text
 http://localhost:8502
-```
-
-## 10. 제출 관점에서의 핵심
-
-교수님께서 가장 빠르게 확인하시려면 아래 3가지만 보시면 됩니다.
-
-1. `pip install -r requirements.txt`
-2. `streamlit run app.py`
-3. 로그인 정보 `ahran / 1234` 입력 후 퀴즈 진행
-
-## 11. 메인 실행 파일
-
-채점 및 실행 기준 메인 파일은 아래입니다.
-
-```text
-app.py
 ```
